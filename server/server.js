@@ -11,14 +11,8 @@ app.use(morgan('dev'))
 const validTypes = [`Bug`, `Dark`, `Dragon`, `Electric`, `Fairy`, `Fighting`, `Fire`, `Flying`, `Ghost`, `Grass`, `Ground`, `Ice`, `Normal`, `Poison`, `Psychic`, `Rock`, `Steel`, `Water`]
 
 app.use(function validateBearerToken(req, res, next) {
-  const bearerToken =req.query.testing
-  const apiToken = process.env.API_TOKEN
-
   console.log('validate bearer token middleware')
-  
-  if(bearerToken !== apiToken){
-    return res.status(401).json({error: 'ayyy man, you aint got no key, SON!'})
-  }
+  debugger
   // move to the next middleware
   next()
 })

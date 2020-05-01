@@ -9,9 +9,11 @@ const helmet = require('helmet')
 
 console.log(process.env.API_TOKEN)
 
-const app = express()
 
-app.use(morgan('dev'))
+const app = express()
+const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'dev'
+app.use(morgan(morganSetting))
+
 app.use(helmet())
 app.use(cors())
 
@@ -53,7 +55,7 @@ function handleGetPokemon(req,res){
 
 app.get('/pokemon', handleGetPokemon)
 
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`)
